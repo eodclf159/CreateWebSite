@@ -10,17 +10,16 @@
 			<div class="header-title">
                 <h1>Hacking요모조모</h1>
             </div>
-			<div class="header-right">
+            <div class="header-right">
                 <span class="user-info">{{ userid }}님, 환영합니다.</span>
                 <a href="http://127.0.0.1:5000/logout" class="header-btn">로그아웃</a>
             </div>
-            
         </div>
     </header>
 
     <main class="container">
         <div class="main-content">
-            <nav class="sidebar">
+			<nav class="sidebar">
                 <h3>카테고리</h3>
                 <ul class="nav-list">
                     <li><a href="#">전체 게시글</a></li>
@@ -29,34 +28,20 @@
                     <li><a href="#">질문과 답변</a></li>
                 </ul>
             </nav>
-
+			
             <section class="content">
-			<h2>자유게시판</h2>
-			 <div class="top-bar">
-			 <form id="search-form" action="/search" method="GET">
-                <div class="search-bar">
-				<select name="search_option" id="search_option">
-					<option value="all">전체</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-				</select>
-                    <input type="text" name="search" placeholder="검색">
-                    <button type="submit">검색</button>
-                </div>
-			</form>
-                <div class="new-post">
-                    <a href="/write_post" class="btn">새 게시글 작성</a>
-                </div>
-			</div>
-				
-                <div class="post-list">
-					{% for post in posts %}
-					<div class="post-item">
-                        <h3><a href="/post/{{ post[0] }}">{{ post[2] }}</a></h3>
-						<small>작성자: {{ post[1] }} | {{ post[4] }}</small>
+                <h2>게시글 수정</h2>
+                <form action="/update_post/{{ post[0] }}" method="POST">
+                    <div>
+                        <label for="title">제목:</label>
+                        <input type="text" id="title" name="title" value="{{ post[2] }}" required>
                     </div>
-					{% endfor %}
-				</div>
+                    <div>
+                        <label for="content">내용:</label>
+                        <textarea id="content" name="content" rows="10" required>{{ post[3] }}</textarea>
+                    </div>
+                    <button type="submit">수정 완료</button>
+                </form>
             </section>
         </div>
     </main>
