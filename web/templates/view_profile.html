@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h1>사용자 프로필</h1>
+    <div>
+	    {% if profile_img_path %}
+        <p><strong>프로필 이미지:</strong></p>
+        <img src="{{ url_for('download_file', filename=profile_img_path) }}" alt="Profile Image" style="max-width: 200px;">
+        {% endif %}
+        <p><strong>이름:</strong> {{ name }}</p>
+        <p><strong>학교:</strong> {{ school }}</p>
+        <p><strong>성별:</strong> {{ gender }}</p>
+
+    </div>
+    <br>
+</body>
+</html>

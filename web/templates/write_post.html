@@ -17,7 +17,6 @@
         </div>
     </header>
 
-
     <main class="container">
         <div class="main-content">
 			<nav class="sidebar">
@@ -31,11 +30,21 @@
             </nav>
 
             <section class="content">
-                <form action="/upload_post" method="post">
-                    <h3>제목을 입력하세요</h3>
+                <form action="/upload_post" method="post" enctype="multipart/form-data">
+                    <h3>제목</h3>
                     <input type="text" id="title" name="title" required>
-                    <h3>내용을 입력하세요</h3>
+
+					<h4>비밀글 설정</h4>
+                    <input type="checkbox" id="is_secret" name="is_secret"> 비밀글 설정</br>
+					<p>비밀번호 :</p>
+                    <input type="password" id="post_password" name="post_password">
+                    
+                    <h3>내용</h3>
                     <textarea id="content" name="content" rows="13" cols="50" required></textarea>
+
+                    <h4>파일 업로드</h4>
+                    <input type="file" id="file" name="file">
+					
                     <div class="button-to-write-container">
                         <button type="submit">게시글 작성</button>
                         <a href="http://127.0.0.1:5000/index" class="btn-secondary">목록</a>

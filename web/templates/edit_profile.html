@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>프로필 수정</title>
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-title">
+                <h1>Hacking요모조모</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-info">{{ userid }}님, 환영합니다.</span>
+                <a href="http://127.0.0.1:5000/profile" class="header-btn">내 프로필</a>
+                <a href="http://127.0.0.1:5000/logout" class="header-btn">로그아웃</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="main-content">
+            <nav class="sidebar">
+                <h3>카테고리</h3>
+                <ul class="nav-list">
+                    <li><a href="#">전체 게시글</a></li>
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="http://127.0.0.1:5000/index">자유게시판</a></li>
+                    <li><a href="#">질문과 답변</a></li>
+                </ul>
+            </nav>
+
+            <section class="content">
+                <div class="profile-content">
+                    <h2>프로필 수정</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="profile-img-container">
+                            <img src="{{ url_for('download_file', filename=profile_img_path) }}" alt="프로필 사진" class="profile-img">
+                            <input type="file" name="profile_img" accept="image/*">
+                        </div>
+                        <p><strong>이름:</strong> <input type="text" name="name" value="{{ name }}" required></p>
+                        <p><strong>학교:</strong> <input type="text" name="school" value="{{ school }}" required></p>
+                        <p><strong>성별:</strong>
+                            <select name="gender" required>
+                                <option value="nam" {% if gender == 'nam' %}selected{% endif %}>남성</option>
+                                <option value="yeo" {% if gender == 'yeo' %}selected{% endif %}>여성</option>
+                            </select>
+                        </p>
+                        <button type="submit">수정하기</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <p>&copy; 2024 웹해킹 박원철 빡공팟 과제.</p>
+        </div>
+    </footer>
+</body>
+</html>

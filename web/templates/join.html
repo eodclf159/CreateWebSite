@@ -2,19 +2,53 @@
 <html>
 <head>
     <link rel="stylesheet" href="http://127.0.0.1:5000/static/style.css">
-    <title>Hacking요모조모</title>
+    <title>회원가입</title>
 </head>
+    <script>
+        document.getElementById('profileimgPush').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile_img').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 <body>
-    <div class="container">
+    <div class="login-container">
         <h1>회원가입</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="profile_img-container">
+                <img id="profile_img" src="x" alt="프로필 사진" class="profile_img">
+                <input type="file" name="profile_img" id="profileimgPush" class="login" accept="image/*">
+            </div>
+            
             <h3>ID</h3>
             <input type="text" name="id" class="login" required>
+            
             <h3>PW</h3>
             <input type="password" name="pw" class="login" required>
-            <button type="submit" class="login" >회원가입</button>
+            
+            <h3>이름</h3>
+            <input type="text" name="name" class="login" required>
+            
+            <h3>학교</h3>
+            <input type="text" name="school" class="login" required>
+            
+            <h3>성별</h3>
+            <select name="gender" class="login" required>
+                <option value="" disabled selected>선택하세요</option>
+                <option value="nam">남성</option>
+                <option value="yeo">여성</option>
+            </select>
+            
+            <button type="submit" class="login">회원가입</button>
         </form>
         <p>이미 계정이 있으면 <a href="http://127.0.0.1:5000/login">로그인</a>을 하세요</p>
     </div>
+
+
 </body>
 </html>
